@@ -6,7 +6,7 @@ import classNames from "classnames";
 const Size = ({sizes}) => {
     const availableSizesValue = [26, 30, 40];
 
-    const [size, setSize] = useState(sizes[0]);
+    const [size, setSize] = useState(0);
 
     const changeSize = (i) => {
         setSize(i)

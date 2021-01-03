@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Title, Price, Type, Size } from "../product";
 
-const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index}) => {
+
+
+const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index, }) => {
 
     return (
         <div key={`${id}_${index}`} className="pizza-block">
@@ -42,7 +44,11 @@ const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index}) 
 ProductBlock.propTypes = {
     item: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired,
+    loaded: PropTypes.bool,
 };
 
+ProductBlock.defaultProps = {
+    loaded: false
+};
 
 export default ProductBlock;

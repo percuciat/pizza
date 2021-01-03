@@ -2,7 +2,6 @@ import React from 'react';
 import {
     Link
 } from "react-router-dom";
-// tt - обязательно передасться, в {} - указывается условие
 
 export default function Button ({type}) {
     return <>

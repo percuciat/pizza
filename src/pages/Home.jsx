@@ -1,20 +1,74 @@
 import React from 'react';
 import { Category, SortPopup } from "../components";
-import { ProductBlock } from "../components/product";
+import { ProductBlock, LoadingProduct } from "../components/product";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryBy, setSortBy } from "../redux/actions/filter";
+import {fetchPizzas} from "../redux/actions/pizza";
 
-const Home = ({pizza}) => {
+
+const dataCategory = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const filterData = [
+    {
+        name: 'популярности',
+        type: 'rating',
+        order: 'desc'
+    },
+    {
+        name: 'цене',
+        type: 'price',
+        order: 'desc'
+    },
+    {
+        name: 'алфавиту',
+        type: 'name',
+        order: 'asc'
+    },
+];
+
+const Home = () => {
+
+    const  {category, sortBy} = useSelector(({filter222}) => filter222);
+    React.useEffect(() => {
+        dispatch(fetchPizzas(category, sortBy))
+        /* return axios.get('http://localhost:3003/pizzas')
+             .then(({data}) => dispatch(setPizzas(data)))*/
+
+    }, [category, sortBy]);
+    const dispatch = useDispatch();
+    const onSelectItem = React.useCallback ((i) => {
+        dispatch(setCategoryBy(i))
+    }, []);
+    const onSelectSortItem = React.useCallback((i) => {
+        dispatch(setSortBy(i))
+    }, []);
+    // получаем данные из store
+    const  pizzaDataItems = useSelector(({pizza}) => pizza.items);
+    const  pizzaLoaded = useSelector(({pizza}) => pizza.isLoaded);
+    const  activeCategory = useSelector(({filter222}) => filter222.category);
+    const  { type } = useSelector(({filter222}) => filter222.sortBy);
+
+
     return (
             <div className="container">
                 <div className="content__top">
-                    <Category items={['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']}/>
-                    <SortPopup elems={['популярности', 'цене', 'алфавиту']}/>
+                    <Category items={dataCategory}
+                              onClickCategory={onSelectItem} activeCategory={activeCategory}/>
+                    <SortPopup elems={filterData}
+                               activeSort={type}
+                               onClickSortType={onSelectSortItem}/>
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">
                     {
-                        pizza.map((item, index) => {
-                            return <ProductBlock key={`${item.id}_${index}`} item={item} index={index}/>
-                        })
+                        pizzaLoaded ?
+                            pizzaDataItems.map((item, index) => {
+                                return <ProductBlock key={`${item.id}_${index}`} item={item} index={index}/>
+                            })
+                            : Array(12)
+                                .fill(0)
+                                .map((item, index) => {
+                                return <LoadingProduct key={`${item.id}_${index}`}/>
+                            })
                     }
                 </div>
             </div>

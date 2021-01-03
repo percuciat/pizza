@@ -7,30 +7,11 @@ import logoType from "../../scss/assets/img/pizza-logo.svg";
 import Button from "./Button";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.changeNum = this.changeNum.bind(this);
-    }
-    state = {
-        arr:  [1,2,3,4]
-    };
-    changeNum() {
-        this.setState({
-            arr: [...this.state.arr, 7]
-        })
-    }
+
 
     render() {
         return (
             <div className="header">
-                <button onClick={this.changeNum}>click</button>
-                <ul>
-                    {
-                        this.state.arr.map(item => {
-                            return <li>{item}</li>
-                        })
-                    }
-                </ul>
                 <div className="container">
                     <Link to="/">
                     <div className="header__logo">
