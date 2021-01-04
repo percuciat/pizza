@@ -7,6 +7,7 @@ import Image from "./Image";
 import LoadingProduct from "./LoadingProduct";
 
 
+
 export {
     Title,
     Type,
@@ -14,5 +15,5 @@ export {
     ProductBlock,
     Price,
     Image,
-    LoadingProduct
+    LoadingProduct,
 }

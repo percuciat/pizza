@@ -8,7 +8,6 @@ import Button from "./Button";
 
 class Header extends Component {
 
-
     render() {
         return (
             <div className="header">
@@ -34,5 +33,7 @@ class Header extends Component {
 Header.propTypes = {
     logoType: PropTypes.string
 };
+
+
 
 export default Header;

@@ -1,27 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from "classnames";
 
 
-const Type = ({types}) => {
-    const availableTypesValue = ['тонкое', 'традиционное'];
-    const [type, setType] = useState(types[0]);
+const Type = ({dataType, types, changeType, activeType}) => {
 
-    const change = (i) => {
-        setType(i)
-    };
     return (
-            availableTypesValue.map((elem, i) => {
-                return (
-                    <li
-                        key={`${elem}_${i}`}
-                        onClick={() => change(i)}
-                        className={classNames({
-                            active: type === i,
-                            disable: !types.includes(i)
-                        })}>
-                        {elem}
-                    </li>
+        dataType.map((elem, i) => {
+            return (
+                <li
+                    key={`${elem}_${i}`}
+                    onClick={() => changeType(i)}
+                    className={classNames({
+                        active: activeType === i,
+                        disable: !types.includes(i)
+                    })}>
+                    {elem}
+                </li>
                 )
             })
         );

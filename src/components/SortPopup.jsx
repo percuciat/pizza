@@ -8,18 +8,15 @@ const SortPopup = React.memo(
             return setVisiblePopup(!visiblePopup);
         };
 
-        // const [activeEl, setActiveEl] = useState(0);
         const changeActive = (i) => {
             setVisiblePopup(false);
-            // return setActiveEl(i);
             return onClickSortType(i);
         };
-        // применяется конкретно к ссылке чего либо
         const sortRef = useRef();
         // заменяем текст названия по активной категории
         const activeLabel = elems.find(obj => obj.type === activeSort);
         const handleOutsideClick = (e) => {
-            let path = e.path || (e.composedPath && e.composedPath());
+            const path = e.path || (e.composedPath && e.composedPath()) || e.composedPath(e.target);
             if (!path.includes(sortRef.current)) {
                 setVisiblePopup(false);
             }

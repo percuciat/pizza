@@ -1,21 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from "classnames";
 
 
-const Size = ({sizes}) => {
-    const availableSizesValue = [26, 30, 40];
-
-    const [size, setSize] = useState(0);
-
-    const changeSize = (i) => {
-        setSize(i)
-    };
+const Size = ({dataSize, sizes, changeSize, activeSize}) => {
     return (
-            availableSizesValue.map((elem, i) => {
+        dataSize.map((elem, i) => {
                 return <li key={`${elem}_${i}`}
                            className={classNames({
-                               active: size === i,
+                               active: activeSize === i,
                                disable: !sizes.includes(elem)
                            })}
                            onClick={() => changeSize(i)}>{elem} см.</li>

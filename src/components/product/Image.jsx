@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Image = ({imageUrl}) => {
+const Image = React.memo(({imageUrl}) => {
     return (
         <img
             className="pizza-block__image"
@@ -10,7 +10,7 @@ const Image = ({imageUrl}) => {
             alt="Pizza"
         />
     )
-};
+});
 
 Image.propTypes = {
     imageUrl: PropTypes.string.isRequired

@@ -1,26 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { Image, Title, Price, Type, Size } from "../product";
 
 
+const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index, onClickAddPizza, valueCartCount }) => {
 
-const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index, }) => {
+    const availableSizesValue = [26, 30, 40];
+    const [size, setSize] = useState(0);
 
+    const changeSize = (i) => {
+        setSize(i)
+    };
+
+    const availableTypesValue = ['тонкое', 'традиционное'];
+    const [type, setType] = useState(types[0]);
+
+    const changeType = (i) => {
+        setType(i)
+    };
+
+    const handelAddPizza = () => {
+        const data = {
+            id,
+            name,
+            imageUrl,
+            price,
+            size: availableSizesValue[size],
+            type: availableTypesValue[type]
+        };
+        return onClickAddPizza(data)
+    };
     return (
         <div key={`${id}_${index}`} className="pizza-block">
             <Image imageUrl={imageUrl}/>
             <Title name={name}/>
             <div className="pizza-block__selector">
                 <ul>
-                    <Type types={types} />
+                    <Type dataType={availableTypesValue}
+                          types={types}
+                          activeType={type}
+                          changeType={changeType} />
                 </ul>
                 <ul>
-                    <Size sizes={sizes} />
+                    <Size dataSize={availableSizesValue}
+                          sizes={sizes}
+                          activeSize={size}
+                          changeSize={changeSize}/>
                 </ul>
             </div>
             <div className="pizza-block__bottom">
                 <Price price={price}/>
-                <div className="button button--outline button--add">
+                <button className="button button--outline button--add" onClick={handelAddPizza}>
                     <svg
                         width="12"
                         height="12"
@@ -34,8 +64,10 @@ const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index, }
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
-                </div>
+                    {
+                        valueCartCount && <i>{valueCartCount}</i>
+                    }
+                </button>
             </div>
         </div>
     )
@@ -45,10 +77,11 @@ ProductBlock.propTypes = {
     item: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired,
     loaded: PropTypes.bool,
+    valueCartCount: PropTypes.number
 };
 
 ProductBlock.defaultProps = {
-    loaded: false
+    loaded: false,
 };
 
 export default ProductBlock;

@@ -1,3 +1,8 @@
+import {
+    SET_PIZZAS,
+    SET_LOADED,
+} from "../types"
+
 const initialState = {
     items: [],
     isLoaded: false
@@ -6,13 +11,13 @@ const initialState = {
 
 export default function pizza(state = initialState , action) {
     switch (action.type) {
-        case 'SET_PIZZAS':
+        case SET_PIZZAS:
             return {
                 ...state,
                 items: action.payload,
                 isLoaded: true,
             };
-        case 'SET_LOADED': {
+        case SET_LOADED: {
             return {
                 ...state,
                 isLoaded: action.payload,
