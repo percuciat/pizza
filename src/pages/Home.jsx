@@ -31,8 +31,6 @@ const Home = () => {
     const  {category, sortBy} = useSelector(({filter222}) => filter222);
     React.useEffect(() => {
         dispatch(fetchPizzas(category, sortBy))
-        /* return axios.get('http://localhost:3003/pizzas')
-             .then(({data}) => dispatch(setPizzas(data)))*/
 
     }, [category, sortBy]);
     const onSelectItem = React.useCallback ((i) => {
@@ -45,7 +43,6 @@ const Home = () => {
     const addPizza = React.useCallback ((obj) => {
         dispatch(addPizzaToCart(obj));
     }, []);
-    // получаем данные из store
     const  pizzaDataItems = useSelector(({pizza}) => pizza.items);
     const  cartDataItems = useSelector(({cart}) => cart.items);
     const  pizzaLoaded = useSelector(({pizza}) => pizza.isLoaded);

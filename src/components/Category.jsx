@@ -1,40 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/*class Category extends Component {
-    constructor(props) {
-        super(props);
-        this.changeActive = this.changeActive.bind(this)
-    }
-    state = {
-        isActive: null,
-    };
-    changeActive(i) {
-       this.setState({
-           isActive: i
-       });
-    }
-    render() {
-        const {items} = this.props;
-       return <>
-           <div className="categories">
-               <ul>
-                   <li className="active">Все</li>
-                   {
-                       items?.map((elem, index) => {
-                            return <li className={this.state.isActive === index ? 'active' : ''} key={`${elem}_${index}`} onClick={() => this.changeActive(index)}>{elem}</li>
-                        })
-                   }
-               </ul>
-           </div>
-       </>
-    }
-}*/
 const Category = React.memo(
     ({items, onClickCategory, activeCategory}) => {
-        // const [active, setActive] = useState(null);
         const changeActive = (i) => {
-            // setActive(i);
             onClickCategory(i)
         };
 

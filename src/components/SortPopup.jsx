@@ -13,7 +13,7 @@ const SortPopup = React.memo(
             return onClickSortType(i);
         };
         const sortRef = useRef();
-        // заменяем текст названия по активной категории
+
         const activeLabel = elems.find(obj => obj.type === activeSort);
         const handleOutsideClick = (e) => {
             const path = e.path || (e.composedPath && e.composedPath()) || e.composedPath(e.target);
@@ -25,8 +25,6 @@ const SortPopup = React.memo(
         React.useEffect(() => {
             document.body.addEventListener('click', handleOutsideClick)
         }, []);
-
-
 
         return <>
             <div ref={sortRef} className="sort">
@@ -79,7 +77,7 @@ SortPopup.propTypes = {
 SortPopup.defaultProps = {
     activeCategory: null,
     elems: [],
-}
+};
 
 
 export default SortPopup;

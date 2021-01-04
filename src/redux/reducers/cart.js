@@ -103,22 +103,5 @@ export default function cart(state = initialState, action) {
 
         default:
             return state
-        /*case 'ADD_PIZZA_CART': {
-            const newObj = {
-                ...state.items,
-                [action.payload.id]:
-                    !state.items[action.payload.id]
-                        ? [action.payload]
-                        : [...state.items[action.payload.id], action.payload]
-            };
-            return {
-                ...state,
-                items: newObj,
-                totalCount: state.totalCount + 1,
-                totalPrice : state.totalPrice + action.payload.price
-            };
-        }
-        default:
-            return state*/
     }
 }

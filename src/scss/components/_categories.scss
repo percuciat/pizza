@@ -29,3 +29,16 @@
     }
   }
 }
+@media screen and (max-width: 963px){
+  .categories ul{
+    flex-wrap: wrap;
+  }
+  .categories ul li{
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 580px){
+  .categories ul{
+    justify-content: center;
+  }
+}
