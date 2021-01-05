@@ -2,14 +2,11 @@ import React from 'react';
 import {
     Link
 } from "react-router-dom";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Button () {
-    const  {totalPrice, totalCount} = useSelector(({cart}) => {
-        return  {
-            totalPrice: cart.totalPrice,
-            totalCount: cart.totalCount,
-        }
+    const  { totalPrice, totalCount } = useSelector(({cart}) => {
+        return cart
     });
 
     return <>
@@ -48,4 +45,4 @@ export default function Button () {
             <span>{totalCount}</span>
         </Link>
     </>
-}
+};

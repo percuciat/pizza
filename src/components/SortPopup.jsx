@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import PropTypes from 'prop-types'
 
-const SortPopup = React.memo(
+const SortPopup =
     ({elems, activeSort, onClickSortType}) => {
         const [visiblePopup, setVisiblePopup] = useState(false);
         const changeVisible = () => {
@@ -14,7 +14,7 @@ const SortPopup = React.memo(
         };
         const sortRef = useRef();
 
-        const activeLabel = elems.find(obj => obj.type === activeSort);
+        const activeLabel = elems.find((obj => obj.type === activeSort)).name;
         const handleOutsideClick = (e) => {
             const path = e.path || (e.composedPath && e.composedPath()) || e.composedPath(e.target);
             if (!path.includes(sortRef.current)) {
@@ -43,7 +43,7 @@ const SortPopup = React.memo(
                         />
                     </svg>
                     <b>Сортировка по:</b>
-                    <span onClick={changeVisible}>{activeLabel.name}</span>
+                    <span onClick={changeVisible}>{activeLabel}</span>
                 </div>
                 {
                     visiblePopup && (
@@ -52,7 +52,7 @@ const SortPopup = React.memo(
                                 {
                                     elems?.map((obj, index) => {
                                         return  <li key={`${obj}_${index}`}
-                                                   className={index === obj.type ? 'active' : ''}
+                                                   className={activeSort === obj.type ? 'active' : ''}
                                                     onClick={() => changeActive(obj)}
                                         >{obj.name}</li>
                                     })
@@ -64,9 +64,7 @@ const SortPopup = React.memo(
 
             </div>
         </>
-    }
-);
-
+    };
 
 SortPopup.propTypes = {
     elems: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -75,7 +73,6 @@ SortPopup.propTypes = {
 };
 
 SortPopup.defaultProps = {
-    activeCategory: null,
     elems: [],
 };
 

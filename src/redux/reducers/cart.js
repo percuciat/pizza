@@ -20,7 +20,6 @@ export default function cart(state = initialState, action) {
     switch (action.type) {
 
         case ADD_PIZZA_CART: {
-
             const currentPizzaData = !state.items[action.payload.id]
                 ? [action.payload]
                 : [...state.items[action.payload.id].items, action.payload];

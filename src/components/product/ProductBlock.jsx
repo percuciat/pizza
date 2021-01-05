@@ -2,17 +2,18 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { Image, Title, Price, Type, Size } from "../product";
 
+const availableSizesValue = [26, 30, 40];
+const availableTypesValue = ['тонкое', 'традиционное'];
 
-const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index, onClickAddPizza, valueCartCount }) => {
+const ProductBlock = React.memo(({item: {id, name, sizes, imageUrl, price, types}, index, onClickAddPizza, valueCartCount }) => {
 
-    const availableSizesValue = [26, 30, 40];
     const [size, setSize] = useState(0);
 
     const changeSize = (i) => {
         setSize(i)
     };
 
-    const availableTypesValue = ['тонкое', 'традиционное'];
+
     const [type, setType] = useState(types[0]);
 
     const changeType = (i) => {
@@ -71,7 +72,7 @@ const ProductBlock = ({item: {id, name, sizes, imageUrl, price, types}, index, o
             </div>
         </div>
     )
-};
+});
 
 ProductBlock.propTypes = {
     item: PropTypes.object.isRequired,

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from "classnames";
 
 
-const Type = ({dataType, types, changeType, activeType}) => {
-
+const Type = React.memo(({dataType, types, changeType, activeType}) => {
     return (
         dataType.map((elem, i) => {
             return (
@@ -20,7 +19,7 @@ const Type = ({dataType, types, changeType, activeType}) => {
                 )
             })
         );
-};
+});
 
 Type.propTypes = {
     types: PropTypes.arrayOf(PropTypes.number).isRequired

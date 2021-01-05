@@ -6,17 +6,16 @@ export const setLoading = val => ({
     payload: val,
 });
 
-export const fetchPizzas = (category, sortBy) => dispatch => {
-    dispatch(setLoading(false));
-    axios.get(`https://my-json-server.typicode.com/percuciat/pizza-db/pizzas?${category !== null && category !== undefined ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`)
-        .then(({data}) => dispatch(setPizzas(data)));
-
-
-};
-
 export const setPizzas = (items) => {
     return {
         type: SET_PIZZAS,
         payload: items,
     }
 };
+
+export const fetchPizzas = (category, sortBy) => dispatch => {
+    dispatch(setLoading(false));
+    axios.get(`https://my-json-server.typicode.com/percuciat/pizza-db/pizzas?${category !== null && category !== undefined ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`)
+        .then(({data}) => dispatch(setPizzas(data)));
+};
+

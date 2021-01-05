@@ -28,38 +28,39 @@ const filterData = [
 
 const Home = () => {
     const dispatch = useDispatch();
-    const  {category, sortBy} = useSelector(({filter222}) => filter222);
+    const  pizzaDataItems = useSelector(({pizza}) => pizza.items);
+    const  cartDataItems = useSelector(({cart}) => cart.items);
+    const  pizzaLoaded = useSelector(({pizza}) => pizza.isLoaded);
+    const  {category, sortBy} = useSelector(({filter}) => filter);
+
     React.useEffect(() => {
         dispatch(fetchPizzas(category, sortBy))
-
     }, [category, sortBy]);
-    const onSelectItem = React.useCallback ((i) => {
-        dispatch(setCategoryBy(i))
+
+    const onSelectCategoryItem = React.useCallback ((name) => {
+        dispatch(setCategoryBy(name))
     }, []);
-    const onSelectSortItem = React.useCallback((i) => {
-        dispatch(setSortBy(i))
+
+    const onSelectSortItem = React.useCallback((type) => {
+        dispatch(setSortBy(type))
     }, []);
 
     const addPizza = React.useCallback ((obj) => {
         dispatch(addPizzaToCart(obj));
     }, []);
-    const  pizzaDataItems = useSelector(({pizza}) => pizza.items);
-    const  cartDataItems = useSelector(({cart}) => cart.items);
-    const  pizzaLoaded = useSelector(({pizza}) => pizza.isLoaded);
-    const  activeCategory = useSelector(({filter222}) => filter222.category);
-    const  { type } = useSelector(({filter222}) => filter222.sortBy);
 
     return (
             <div className="container">
                 <div className="content__top">
                     <Category items={dataCategory}
-                              onClickCategory={onSelectItem} activeCategory={activeCategory}/>
+                              onClickCategory={onSelectCategoryItem}
+                              activeCategory={category}/>
                     <SortPopup elems={filterData}
-                               activeSort={type}
+                               activeSort={sortBy.type}
                                onClickSortType={onSelectSortItem}/>
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
-                <div className="content__items">
+                <ul className="content__items">
                     {
                         pizzaLoaded ?
                                 pizzaDataItems.map((item, index) => {
@@ -76,7 +77,7 @@ const Home = () => {
                                 return <LoadingProduct key={`${item.id}_${index}`}/>
                             })
                     }
-                </div>
+                </ul>
             </div>
     );
 

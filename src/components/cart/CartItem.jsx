@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartItem = ({ dataElem, priceTotal, totalCount, handleRemoveCartItem, handlePlusCartItem, handleMinusCartItem}) => {
+const CartItem = React.memo(({ dataElem, priceTotal, totalCount, handleRemoveCartItem, handlePlusCartItem, handleMinusCartItem}) => {
     const { id, name, type, imageUrl, size} = dataElem;
     const removeItem = () => {
         handleRemoveCartItem(id)
@@ -12,7 +12,7 @@ const CartItem = ({ dataElem, priceTotal, totalCount, handleRemoveCartItem, hand
         handleMinusCartItem(id)
     };
     return (
-        <div className="cart__item">
+        <li className="cart__item">
             <div className="cart__item-img">
                 <img
                     className="pizza-block__image"
@@ -67,8 +67,8 @@ const CartItem = ({ dataElem, priceTotal, totalCount, handleRemoveCartItem, hand
                     </svg>
                 </button>
             </div>
-        </div>
+        </li>
     )
-};
+});
 
 export default CartItem;

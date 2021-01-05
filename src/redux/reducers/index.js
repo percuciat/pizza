@@ -6,7 +6,7 @@ import cart from './cart'
 
 
 const rootReducer = combineReducers({
-    filter222: filter,
+    filter,
     pizza,
     cart,
 });
