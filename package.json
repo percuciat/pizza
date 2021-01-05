@@ -88,7 +88,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://localhost:3003",
+  "proxy": "https://my-json-server.typicode.com/percuciat/pizza-db/",
   "browserslist": {
     "production": [
       ">0.2%",
