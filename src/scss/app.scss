@@ -78,6 +78,9 @@ body {
       }
     }
   }
+  .content__items {
+    display: block;
+  }
 
   &__clear {
     display: flex;
