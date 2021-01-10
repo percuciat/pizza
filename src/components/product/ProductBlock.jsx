@@ -32,7 +32,7 @@ const ProductBlock = React.memo(({item: {id, name, sizes, imageUrl, price, types
         return onClickAddPizza(data)
     };
     return (
-        <div key={`${id}_${index}`} className="pizza-block">
+        <li key={`${id}_${index}`} className="pizza-block">
             <Image imageUrl={imageUrl}/>
             <Title name={name}/>
             <div className="pizza-block__selector">
@@ -70,7 +70,7 @@ const ProductBlock = React.memo(({item: {id, name, sizes, imageUrl, price, types
                     }
                 </button>
             </div>
-        </div>
+        </li>
     )
 });
 

@@ -29,9 +29,9 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
   }
 
   &__top {
@@ -329,6 +329,11 @@ body {
   .categories{
     margin-bottom: 20px;
   }
+  .content {
+    &__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }
 @media screen and (max-width: 940px){
   .cart--empty{
@@ -347,6 +352,11 @@ body {
   }
 }
 @media screen and (max-width: 680px){
+  .content {
+    &__items {
+      grid-template-columns: 1fr;
+    }
+  }
   .cart__item{
     flex-wrap: wrap;
     &-img{
