@@ -4,9 +4,9 @@ import thunk from 'redux-thunk';
 import rootReducer from "./reducers";
 
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+/*const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     trace: true,
     traceLimit: 25
-}) || compose;
+}) || compose;*/
 
-export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+export const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
